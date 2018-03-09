@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context="kz.mars.studio.calculator.pattern.MainActivity">
+
+    <EditText
+        android:id="@+id/editShowNumbers"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:textSize="50sp"
+        android:gravity="right"
+        android:paddingTop="10pt"
+        android:textColor="@color/white"
+        android:inputType="textPersonName"
+        android:background="@color/grey"
+        android:text="0" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_marginBottom="1pt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/buAC"
+                android:layout_width="0dp"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:layout_marginRight="1pt"
+                android:background="@color/white_back"
+                android:textColor="@color/black"
+                android:onClick="buClean"
+                android:text="AC"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/buPlusMinus"
+                android:onClick="buNumberEvent"
+                android:layout_width="0dp"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:layout_marginRight="1pt"
+                android:background="@color/white_back"
+                android:textColor="@color/black"
+                android:text="+/-"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/buPercent"
+                android:layout_width="0dp"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:layout_marginRight="1pt"
+                android:background="@color/white_back"
+                android:textColor="@color/black"
+                android:onClick="buPercent"
+                android:text="%"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/buDiv"
+                android:layout_width="0dp"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:background="@color/orange"
+                android:textColor="@color/white"
+                android:text="/"
+                android:textSize="18sp"
+                android:onClick="buOperationEvent"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_marginBottom="1pt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/bu7"
+                android:onClick="buNumberEvent"
+                android:layout_width="0dp"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:layout_marginRight="1pt"
+                android:background="@color/white_back"
+                android:textColor="@color/black"
+                android:text="7"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/bu8"
+                android:onClick="buNumberEvent"
+                android:layout_width="0dp"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:layout_marginRight="1pt"
+                android:background="@color/white_back"
+                android:textColor="@color/black"
+                android:text="8"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/bu9"
+                android:onClick="buNumberEvent"
+                android:layout_width="0dp"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:layout_marginRight="1pt"
+                android:background="@color/white_back"
+                android:textColor="@color/black"
+                android:text="9"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/buMult"
+                android:layout_width="0dp"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:background="@color/orange"
+                android:textColor="@color/white"
+                android:text="x"
+                android:textSize="18sp"
+                android:onClick="buOperationEvent"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_marginBottom="1pt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/bu4"
+                android:onClick="buNumberEvent"
+                android:layout_width="0dp"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:layout_marginRight="1pt"
+                android:background="@color/white_back"
+                android:textColor="@color/black"
+                android:text="4"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/bu5"
+                android:onClick="buNumberEvent"
+                android:layout_width="0dp"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:layout_marginRight="1pt"
+                android:background="@color/white_back"
+                android:textColor="@color/black"
+                android:text="5"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/bu6"
+                android:onClick="buNumberEvent"
+                android:layout_width="0dp"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:layout_marginRight="1pt"
+                android:background="@color/white_back"
+                android:textColor="@color/black"
+                android:text="6"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/buSub"
+                android:layout_width="0dp"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:background="@color/orange"
+                android:textColor="@color/white"
+                android:text="-"
+                android:textSize="18sp"
+                android:onClick="buOperationEvent"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_marginBottom="1pt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/bu1"
+                android:onClick="buNumberEvent"
+                android:layout_width="0dp"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:layout_marginRight="1pt"
+                android:background="@color/white_back"
+                android:textColor="@color/black"
+                android:text="1"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/bu2"
+                android:onClick="buNumberEvent"
+                android:layout_width="0dp"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:layout_marginRight="1pt"
+                android:background="@color/white_back"
+                android:textColor="@color/black"
+                android:text="2"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/bu3"
+                android:onClick="buNumberEvent"
+                android:layout_width="0dp"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:layout_marginRight="1pt"
+                android:background="@color/white_back"
+                android:textColor="@color/black"
+                android:text="3"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/buSum"
+                android:layout_width="0dp"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:background="@color/orange"
+                android:textColor="@color/white"
+                android:text="+"
+                android:textSize="18sp"
+                android:onClick="buOperationEvent"/>
+        </TableRow>
+
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bu0"
+            android:onClick="buNumberEvent"
+            android:layout_width="0dp"
+            android:layout_height="30pt"
+            android:layout_weight="2"
+            android:layout_marginRight="1pt"
+            android:background="@color/white_back"
+            android:textColor="@color/black"
+            android:text="0"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/buDot"
+            android:onClick="buNumberEvent"
+            android:layout_width="0dp"
+            android:layout_height="30pt"
+            android:layout_weight="1"
+            android:layout_marginRight="1pt"
+            android:background="@color/white_back"
+            android:text="."
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/buEqual"
+            android:layout_width="0dp"
+            android:layout_height="30pt"
+            android:layout_weight="1"
+            android:background="@color/orange"
+            android:textColor="@color/white"
+            android:text="="
+            android:onClick="buEqualEvent"
+            android:textSize="18sp"/>
+    </LinearLayout>
+</LinearLayout>
