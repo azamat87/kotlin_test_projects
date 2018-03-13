@@ -33,18 +33,15 @@ class LoginActivity : AppCompatActivity() {
     private var myRef = dataBase.reference
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         mAuth = FirebaseAuth.getInstance()
-        FirebaseMessaging.getInstance().subscribeToTopic("news");
+        FirebaseMessaging.getInstance().subscribeToTopic("news")
 
         ivImagePerson.setOnClickListener {
             checkPermission()
         }
-
-
     }
 
     val READ_IMAGE = 253
@@ -54,7 +51,6 @@ class LoginActivity : AppCompatActivity() {
                     PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),READ_IMAGE)
                 return
-
             }
         }
         loadImage()

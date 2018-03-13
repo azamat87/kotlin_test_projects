@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "71420669650",
+    "firebase_url": "https://findphone-b2071.firebaseio.com",
+    "project_id": "findphone-b2071",
+    "storage_bucket": "findphone-b2071.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71420669650:android:0d038b6fee2eb96b",
+        "android_client_info": {
+          "package_name": "mars.studio.findphone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71420669650-jql2llj8i3vmsmhp4idcgm3uool4ftec.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mars.studio.findphone",
+            "certificate_hash": "da70b8e8185f2aeecb6cd5f29c49da68fff5e4d0"
+          }
+        },
+        {
+          "client_id": "71420669650-7395eiktilbnhl8t64j9pun4k65ah91u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIrwPhmU5cAYbRkMXuk_gN0i0x0i6sSbE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71420669650-7395eiktilbnhl8t64j9pun4k65ah91u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

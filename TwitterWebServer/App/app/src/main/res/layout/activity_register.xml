@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context="mars.studio.twitterweb.RegisterActivity">
+
+
+    <EditText
+        android:id="@+id/ed_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Name"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:maxLines="1"/>
+
+    <EditText
+        android:id="@+id/ed_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Email"
+        android:gravity="center"
+        android:maxLines="1"
+        android:layout_marginBottom="10dp"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/ed_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Password"
+        android:gravity="center"
+        android:maxLines="1"
+        android:layout_marginBottom="10dp"
+        android:inputType="textPassword" />
+
+    <ImageView
+        android:id="@+id/iv_user"
+        android:layout_width="80pt"
+        android:layout_height="100pt"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        app:srcCompat="@drawable/persoicon" />
+
+    <Button
+        android:id="@+id/bu_register"
+        android:layout_width="50pt"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bu_color"
+        android:textColor="@color/white"
+        android:onClick="buRegisterEvent"
+        android:text="Register" />
+
+</LinearLayout>
