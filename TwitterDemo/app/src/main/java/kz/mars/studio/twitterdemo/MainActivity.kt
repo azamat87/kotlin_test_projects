@@ -32,9 +32,11 @@ class MainActivity : AppCompatActivity() {
     private var myRef = dataBase.reference
 
     private var listTweets = ArrayList<Ticket>()
+    var adapter: MyTweetAdapter? = null
+
     private var myEmail: String ?= null
     private var myUID:String ?= null
-    var adapter:MyTweetAdapter ?= null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -45,6 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         listTweets.add(Ticket("0","","","add"))
         loadPosts()
+
         adapter = MyTweetAdapter(this, listTweets)
         lv_tweets.adapter = adapter
     }

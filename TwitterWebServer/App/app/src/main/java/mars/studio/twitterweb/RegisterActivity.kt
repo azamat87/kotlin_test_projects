@@ -18,10 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_register.*
 import org.json.JSONObject
-import java.io.BufferedReader
 import java.io.ByteArrayOutputStream
-import java.io.InputStream
-import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 import java.text.SimpleDateFormat
@@ -132,7 +129,7 @@ class RegisterActivity : AppCompatActivity() {
 //            myRef.child("Users").child(currentUser.uid).child("ProfileImage").setValue(downloadUrl)
 //            loadTweets()
             Log.e("myLog", " url " + downloadUrl)
-            val url = "http://dec.loacal/register.php?first_name="+ed_name.text.toString()+
+            val url = "http://dec.local/register.php?first_name="+ed_name.text.toString()+
                     "&email="+ed_email.text.toString()+"&password="+ed_password.text.toString()+"&picture_path="+downloadUrl
             MyAsyncTask().execute(url)
         }
@@ -179,29 +176,6 @@ class RegisterActivity : AppCompatActivity() {
             } catch (ex: Exception) {
 
             }
-        }
-
-        private fun convertStremToString(inputStream: InputStream): String {
-            Log.e("myLog", " inputStream " + inputStream.markSupported())
-            Log.e("myLog", " inputStream " + inputStream.available())
-            val bufferReader = BufferedReader(InputStreamReader(inputStream))
-            Log.e("myLog", " bufferReader " + bufferReader.lineSequence())
-            var line: String? = null
-            var AllString: String = ""
-            Log.e("myLog", " convertStremToString ")
-            try {
-                do {
-                    line = bufferReader.readLine()
-                    if (line != null) {
-                        AllString += line
-                    }
-                } while (line != null)
-
-                Log.e("myLog", " convertStremToString 2 " + AllString)
-            } catch (ex: Exception) {
-
-            }
-            return AllString
         }
 
     }
