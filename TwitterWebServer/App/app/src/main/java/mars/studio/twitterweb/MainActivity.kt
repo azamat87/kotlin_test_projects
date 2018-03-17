@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.add_ticket.*
 import kotlinx.android.synthetic.main.add_ticket.view.*
 import kotlinx.android.synthetic.main.tweet_ticket.view.*
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 import java.net.HttpURLConnection
@@ -48,9 +49,7 @@ class MainActivity : AppCompatActivity() {
         adapter = MyTweetAdapter(this, listTweets)
         lv_tweets.adapter = adapter
 
-        listTweets.clear()
-        listTweets.add(Ticket("0","","","add"))
-        adapter!!.notifyDataSetChanged()
+        searchInDataBase("%", 0)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -64,7 +63,7 @@ class MainActivity : AppCompatActivity() {
 
             sv.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-//                    LoadQuery("%"+query+"%")
+                    searchInDataBase(query!!, 0)
                     return false
                 }
 
@@ -82,8 +81,9 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item != null) {
             when (item.itemId) {
-                R.id.addNote -> {
-
+                R.id.home -> {
+                    //http://localhost:/TwitterWebServer/TweetList.php?op=3&query=%$StartFrom=0
+                    searchInDataBase("%", 0)
                 }
                 R.id.app_bar_search -> {
 
@@ -93,6 +93,13 @@ class MainActivity : AppCompatActivity() {
 
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun searchInDataBase(searchText: String, startFrom: Int) {
+        val url = "http://localhost:/TwitterWebServer/TweetList.php?op=3&query=$searchText&StartFrom=$startFrom"
+        MyAsyncTask().execute(url)
+
+
     }
 
     // http
@@ -128,7 +135,30 @@ class MainActivity : AppCompatActivity() {
                     downloadUrl = ""
                     listTweets.removeAt(0)
                     adapter!!.notifyDataSetChanged()
+                }else if (json.getString("msg") == "has tweet") {
+                    listTweets.clear()
+                    listTweets.add(Ticket("0", "", "", "add", "", "", ""))
+                    adapter!!.notifyDataSetChanged()
+
+                    // get objects
+                    val tweets = JSONArray(json.getString("info"))
+                    for (i in 0 until tweets.length()) {
+                        val tweet = tweets.getJSONObject(i)
+                        listTweets.add(Ticket(tweet.getString("tweet_id"),
+                                tweet.getString("tweet_text"),
+                                tweet.getString("tweet_picture"),
+                                tweet.getString("tweet_date"),
+                                tweet.getString("first_name"),
+                                tweet.getString("picture_path"),
+                                tweet.getString("user_id")))
+
+                    }
+
+                } else if (json.getString("msg") == "no tweet") {
+                    listTweets.clear()
+                    listTweets.add(Ticket("0", "", "", "add", "", "",""))
                 }
+                adapter!!.notifyDataSetChanged()
             } catch (ex: Exception) {
 
             }
@@ -150,14 +180,16 @@ class MainActivity : AppCompatActivity() {
 
             var tweet = listTweet[position]
 
-            if (tweet.tweetPersonUID.equals("add")) {
+            if (tweet.tweetDate.equals("add")) {
                 var view = layoutInflater.inflate(R.layout.add_ticket, null)
 
                 view.iv_attach.setOnClickListener {
                     loadImage()
                 }
                 view.iv_post.setOnClickListener {
-                    listTweets.add(0, Ticket("0", "him", "url", "loading"))
+                    listTweets.add(0, Ticket("0",
+                            "him", "url", "loading",
+                            "","", ""))
                     adapter!!.notifyDataSetChanged()
 
                     val url = "http://localhost/TwitterWebServer/TweetAdd.php?user_id="+SaveSettings.userID+"&tweet_text="+ed_text_post.text.toString()+"&tweet_picture=" + downloadUrl
@@ -166,18 +198,24 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 return view
-            } else if(tweet.tweetPersonUID.equals("loading")){
+            } else if(tweet.tweetDate.equals("loading")){
                 var view = layoutInflater.inflate(R.layout.loading_ticket, null)
                 return view
             } else {
                 var view = layoutInflater.inflate(R.layout.tweet_ticket, null)
 
                 view.txt_tweet.text = tweet.tweetText
-
+                view.txt_tweet_date.text = tweet.tweetDate
                 Picasso.with(ctx).load(tweet.tweetImageURL).into(view.tweet_picture)
 
-//                Picasso.with(ctx).load(userInfo).into(view.picture_path)
-//                view.txtUserName.text = userInfo
+                Picasso.with(ctx).load(tweet.personImage).into(view.picture_path)
+                view.txtUserName.text = tweet.personName
+                view.txtUserName.setOnClickListener {
+                    //http://localhost:/TwitterWebServer/TweetList.php?op=2&user_id=2$StartFrom=0
+                    val userId = tweet.personId
+                    val url = "http://localhost:/TwitterWebServer/TweetList.php?op=2&user_id=2&StartFrom=0"
+                    MyAsyncTask().execute(url)
+                }
 
                 return view
             }
@@ -221,7 +259,7 @@ class MainActivity : AppCompatActivity() {
     var downloadUrl:String ?= null
 
     fun upLoadImage(bitmap: Bitmap) {
-        listTweets.add(Ticket("0","","","loading"))
+        listTweets.add(Ticket("0","","","loading","","", ""))
         adapter!!.notifyDataSetChanged()
         val storage = FirebaseStorage.getInstance()
         val storageRef = storage.getReferenceFromUrl("gs://twitterweb-dbcb6.appspot.com")

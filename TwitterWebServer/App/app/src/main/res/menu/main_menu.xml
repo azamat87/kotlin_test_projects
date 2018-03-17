@@ -11,7 +11,7 @@
             app:showAsAction="always"/>
 
     <item
-        android:id="@+id/addNote"
+        android:id="@+id/home"
         android:icon="@drawable/ic_home_white_48dp"
         android:title="Add"
         app:showAsAction="ifRoom" />
